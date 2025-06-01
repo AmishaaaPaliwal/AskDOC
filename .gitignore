@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+venv*/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+
+# Groq API key
+groq_api.key
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+~$*
+
+# Document processing temp files
+uploads/
+temp/
+*.pdf.tmp
+*.docx.tmp
+*.txt.tmp
+
+# FAISS index files
+*.faiss
+*.index
+
+# Streamlit cache
+.streamlit/
+data/
+.streamlit/secrets.toml
+
+# Build and distribution directories
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Unstructured document chunks
+*.json
+*.pickle
+
+# HuggingFace cache
+.cache/
+.huggingface/
+
+# MacOS system files
+.DS_Store
+._*
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
