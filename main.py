@@ -11,10 +11,12 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableSequence
 
+# -------------------- Page Configuration --------------------
 st.set_page_config(
     page_title="AskDOC - AI Academic Assistant", 
     page_icon="📚",
     layout="wide",
+    
     initial_sidebar_state="expanded"
 )
 
@@ -95,20 +97,25 @@ st.markdown(f"""
             
         /* ===== ASK DOC BANNER ===== */
     .ask-doc-banner {{
-        background: linear-gradient(145deg, var(--darker-bg), var(--dark-bg)) !important;
-        padding: 20px 30px;
-        border-radius: 16px;
-        text-align: center;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-        margin: 35px auto;
-        border-left: 8px solid var(--primary-color);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        width: 300%;
-        box-sizing: border-box;
-    }}
+    background: linear-gradient(145deg, var(--darker-bg), var(--dark-bg)) !important;
+    padding: 20px 30px;
+    border-radius: 0;  /* Changed from 16px to 0 for full-width */
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin: 0;  /* Changed from 35px auto to 0 */
+    border-left: none;  /* Removed the left border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100vw;  /* Changed to viewport width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-sizing: border-box;
+}}
     
     .ask-doc-title, .ask-doc-tagline {{
         background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
@@ -268,23 +275,23 @@ st.markdown(f"""
         border-top: 1px solid var(--border-color);
     }}
     
-    /* ===== ASK DOC BANNER ===== */
-    .ask-doc-banner {{
-        background: color-mix(in srgb, var(--dark-bg) 5%, white 95%) !important;
-        color: blue;
-        padding: 14px 24px;
-        border-radius: 12px;
-        font-size: 1.8rem;
-        font-weight: 700;
-        text-align: center;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        margin: 25px auto;
-        border-left: 6px solid var(--primary-color);
-        display: block;
-        width: fit-content;
-        max-width: 90%;
-        box-sizing: border-box;
-    }}
+    # /* ===== ASK DOC BANNER ===== */
+    # .ask-doc-banner {{
+    #     background: color-mix(in srgb, var(--dark-bg) 5%, white 95%) !important;
+    #     color: blue;
+    #     padding: 14px 24px;
+    #     border-radius: 12px;
+    #     font-size: 1.8rem;
+    #     font-weight: 700;
+    #     text-align: center;
+    #     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    #     margin: 25px auto;
+    #     border-left: 6px solid var(--primary-color);
+    #     display: block;
+    #     width: fit-content;
+    #     max-width: 90%;
+    #     box-sizing: border-box;
+    # }}
     
     .divider {{
         height: 1px;
@@ -523,10 +530,12 @@ st.markdown("""
         <h1 class="ask-doc-title">AskDOC</h1>
         <p class="ask-doc-tagline">Document intelligence at your fingertips</p>
     </div>
-    <p style="font-size:1.1rem; color:var(--lighter-text); margin: 0 auto 30px; max-width: 800px; text-align: center;">
-    Upload your academic documents and get AI-powered answers with precise source analysis. 
-    Know exactly what comes from your materials versus general knowledge.
-    </p>
+    <div style="padding: 0 15px;">  <!-- Added container for content below banner -->
+        <p style="font-size:1.1rem; color:var(--lighter-text); margin: 0 auto 30px; max-width: 800px; text-align: center;">
+        Upload your academic documents and get AI-powered answers with precise source analysis. 
+        Know exactly what comes from your materials versus general knowledge.
+        </p>
+    </div>
 """, unsafe_allow_html=True)
 
 # Initialize session state
@@ -652,7 +661,7 @@ with st.sidebar:
             "Select AI Model:",
             options=list(model_options.keys()),  # Show display names
             index=0 
-
+        )
         # Get the corresponding model key (e.g., "llama3-8b-8192")
         model_key = model_options[selected_model]
         st.write(f"Selected model key: `{model_key}`")
